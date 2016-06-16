@@ -16,5 +16,22 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-contrib-sass-lint');
 ```
 
+## Sass-lint Task
+
+> Run this task with `grunt sass-lint` command.
+
+Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
+
+### Options
+
+Please, only provide a `String` to `grunt.file.src` in your target config.
+
+#### config
+Type: `String`
+
+This options resembles with the `configPath` option of `sass-lint`.
+
+* if so not provided, it is searched for `.sass-lint.yml` in the cwd.
+
 ---
 Task coded and submitted by [Sebastian Döll](http://github.com/katallaxie)
