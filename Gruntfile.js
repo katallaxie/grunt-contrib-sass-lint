@@ -14,6 +14,16 @@
 module.exports = (grunt) => {
   // project configuration
   grunt.initConfig({
+    // sample linting
+    'sass-lint': {
+      options: {
+        // later to support the alternation of the config.xml
+        config: '.sass-lint.yml'
+      },
+      all: {
+        src: 'test/*.scss'
+      }
+    },
 
     // checking code style
     eslint: {
@@ -36,11 +46,11 @@ module.exports = (grunt) => {
   grunt.loadTasks('tasks');
 
   // load development tasks
-  // grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-eslint');
 
   // when testing then first clean the relevant dirs and produce the icons
-  grunt.registerTask('test', ['clean']);
+  grunt.registerTask('test', ['clean', 'sass-lint']);
   // TODO: add unit tests
 
   // By default, lint and run all tests.

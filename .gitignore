@@ -23,3 +23,6 @@ build
 node_modules
 icon.png
 splash.png
+
+# Tests
+sass-lint-report.xml
