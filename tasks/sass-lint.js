@@ -31,6 +31,18 @@ module.exports = grunt => {
           src = this.files[0].orig.src[0] || '',
           config = '.sass-lint.yml';
 
+      // output function
+      let writeResults = ({ruleId, line, column, message, severity} = message) => {
+        log.writeln(chalk.white(`rule: ${ruleId}\nline: ${line}, column: ${column}, severity: ${severity}\nmessage: ${message}`));
+        let i = 0,
+         l = 45,
+         o = [];
+        for ( ; i  < l; i++) {
+          o.push('-');
+        }
+        log.writeln(chalk.white(`${o.join('')}`));
+      };
+
       // try to find .sass-lint.yml
       try {
         fs.statSync(config).isFile();
@@ -43,7 +55,7 @@ module.exports = grunt => {
       // options
       const options = this.options({
         configPath: config,
-        verbose: true
+        verbose: false // this is a trigger for the verbosity
       });
 
       // linting files
@@ -51,17 +63,17 @@ module.exports = grunt => {
 
       // verbose, to log output
       if (options.verbose) {
-        lint.outputResults(results, options, options.configFile);
+        lint.outputResults(results, options, options.configFile); // this should be in a function
       } else {
-        // outputting results
+        // outputting
         results.forEach(file => {
           log.writeln(chalk.blue(file.filePath));
           file.messages.forEach(message => {
-            for (let prop in message) {
+            for (let prop in message) { // this should be moved somewhere else
               if (!message.hasOwnProperty(prop)) {
                 continue;
               }
-              log.writeln(chalk.white(`${prop}:\t${message[prop]}`));
+              writeResults(message);
             }
           log.writeln();
           });
