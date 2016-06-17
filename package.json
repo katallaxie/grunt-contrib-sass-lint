@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib-sass-lint",
   "description": "A grunt task to employ sass-lint for better Sass",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://github.com/katallaxie/grunt-contrib-sass-lint",
   "author": {
     "name": "katallaxie",
