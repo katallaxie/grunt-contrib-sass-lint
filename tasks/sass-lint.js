@@ -52,21 +52,21 @@ module.exports = grunt => {
       // verbose, to log output
       if (options.verbose) {
         lint.outputResults(results, options, options.configFile);
-      }
-
-      // outputting results
-      results.forEach(file => {
-        log.writeln(chalk.blue(file.filePath));
-        file.messages.forEach(message => {
-          for (let prop in message) {
-            if (!message.hasOwnProperty(prop)) {
-              continue;
+      } else {
+        // outputting results
+        results.forEach(file => {
+          log.writeln(chalk.blue(file.filePath));
+          file.messages.forEach(message => {
+            for (let prop in message) {
+              if (!message.hasOwnProperty(prop)) {
+                continue;
+              }
+              log.writeln(chalk.white(`${prop}:\t${message[prop]}`));
             }
-            log.writeln(chalk.white(`${prop}:\t${message[prop]}`));
-          }
-        log.writeln();
+          log.writeln();
+          });
         });
-      });
+      }
 
       // check for errors
       if (! option('force')) {
